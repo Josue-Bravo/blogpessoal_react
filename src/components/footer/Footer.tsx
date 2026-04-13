@@ -1,9 +1,18 @@
 import { FacebookLogoIcon, InstagramLogoIcon, LinkedinLogoIcon } from '@phosphor-icons/react'
+import { useContext } from 'react'
+import { AuthContext } from '../../contexts/AuthContext'
 
 function Footer() {
 
+    //Consumo do contexto AuthContext
+    const { usuario } = useContext(AuthContext)
+
+
+
     let data = new Date().getFullYear()
-    return (
+
+    if (usuario.token !== ""){
+        return (
         <>
             <div className='flex justify-center bg-indigo-900 text-white'>
                 <div className='container flex flex-col items-center py-4'>
@@ -20,7 +29,10 @@ function Footer() {
 
             </div>
         </>
-    )
+    )} else {
+        return null
+    }
+    
 }
 
 export default Footer
